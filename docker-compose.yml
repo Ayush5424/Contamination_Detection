@@ -1,0 +1,79 @@
+# The whole system with one command:   docker compose up --build
+#   React dashboard  http://localhost:8765     REST API  http://localhost:8765/docs
+#   (if the port is busy:  set API_PORT=8766 before docker compose up)
+#   InfluxDB   http://localhost:8086     (user admin / password wq_admin_2026)
+services:
+  mosquitto:                       # MQTT broker
+    image: eclipse-mosquitto:2
+    ports: ["1883:1883"]
+    volumes: ["./docker/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro"]
+
+  mysql:                           # readings, assessments and alerts
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: wq_root_2026
+      MYSQL_DATABASE: water_quality
+      MYSQL_USER: wq
+      MYSQL_PASSWORD: wq_password
+    volumes: ["mysql-data:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uwq", "-pwq_password"]
+      interval: 5s
+      retries: 30
+
+  influxdb:                        # time-series mirror of readings and risk scores
+    image: influxdb:2.7
+    ports: ["8086:8086"]
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: wq_admin_2026
+      DOCKER_INFLUXDB_INIT_ORG: jims
+      DOCKER_INFLUXDB_INIT_BUCKET: cooling_water
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: wq-demo-token
+    volumes: ["influx-data:/var/lib/influxdb2"]
+
+  ingest:                          # MQTT -> database -> models -> alerts
+    build: .
+    image: water-quality-monitor
+    command: python ingest_service.py
+    env_file: [{path: settings.env, required: false}]
+    environment: &common
+      MQTT_HOST: mosquitto
+      DATABASE_URL: mysql+pymysql://wq:wq_password@mysql:3306/water_quality
+      INFLUX_URL: http://influxdb:8086
+      INFLUX_TOKEN: wq-demo-token
+      INFLUX_ORG: jims
+      INFLUX_BUCKET: cooling_water
+      DESKTOP_NOTIFY: "0"
+      TZ: ${TZ:-Asia/Kolkata}       # plant clock of the feeder and times in the database (containers default to UTC)
+    depends_on:
+      mysql: {condition: service_healthy}
+      mosquitto: {condition: service_started}
+      influxdb: {condition: service_started}
+    restart: unless-stopped
+
+  gateway:                         # sensor feeder agent (replace with the plant's gateway)
+    build: .
+    image: water-quality-monitor
+    command: python sensor_publisher.py --interval 1
+    environment: *common
+    depends_on: [mosquitto, ingest]
+    restart: unless-stopped
+
+  api:                             # REST API + React dashboard
+    build: .
+    image: water-quality-monitor
+    command: uvicorn api:app --host 0.0.0.0 --port 8000
+    env_file: [{path: settings.env, required: false}]
+    environment:
+      <<: *common
+      LIVE_AGENT: "0"                # feeder and ingestion run as the gateway and ingest containers
+    ports: ["${API_PORT:-8765}:8000"]
+    depends_on:
+      mysql: {condition: service_healthy}
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  influx-data:

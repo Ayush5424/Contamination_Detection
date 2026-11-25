@@ -1,0 +1,10 @@
+# runtime data (database, alert log) - created on first run
+data/
+# local settings with e-mail passwords / tokens - copy settings.env.example instead
+settings.env
+__pycache__/
+*.pyc
+frontend/node_modules/
+# local logs
+models/streamlit_*.txt
+models/train_log.txt

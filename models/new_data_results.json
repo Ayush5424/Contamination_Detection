@@ -1,0 +1,192 @@
+{
+  "New data, seed 7": {
+    "r2": 0.9938696515976826,
+    "rmse": 1.1294229685794643,
+    "rmse_raw": 2.176908553139778,
+    "rmse_hi": 1.7911270691004395,
+    "bias_hi": -0.031244336194403935,
+    "fc_persist": 5.183697634511481,
+    "fc_lstm": 4.745120671030765,
+    "fc_xgb": 3.0580407590150647,
+    "anomaly_f1": 0.755624373804536,
+    "events_caught": "25/25",
+    "root_cause": "25/25",
+    "fused": {
+      "LSTM": {
+        "macro_f1": 0.9038619175792375,
+        "false_alarm": 0.011955593509820665,
+        "alert_recall": 0.8098159509202454,
+        "warn_lead": 51.666666666666664,
+        "warn_n": 18,
+        "warn_missed": 1,
+        "alert_lead": 3.0,
+        "alert_n": 5,
+        "alert_missed": 0
+      },
+      "XGBoost": {
+        "macro_f1": 0.936446974638518,
+        "false_alarm": 0.004795375418774223,
+        "alert_recall": 0.8619631901840491,
+        "warn_lead": 56.388888888888886,
+        "warn_n": 18,
+        "warn_missed": 1,
+        "alert_lead": 21.0,
+        "alert_n": 5,
+        "alert_missed": 0
+      }
+    },
+    "n_events": 25
+  },
+  "Seed 7, sensor noise x2": {
+    "r2": 0.9808571411889078,
+    "rmse": 1.9958019151784516,
+    "rmse_raw": 3.3412299400375645,
+    "rmse_hi": 3.1472662332125156,
+    "bias_hi": -1.399616547593381,
+    "fc_persist": 5.3844172806433725,
+    "fc_lstm": 4.859266672841416,
+    "fc_xgb": 3.842702798451738,
+    "anomaly_f1": 0.45781828024903004,
+    "events_caught": "25/25",
+    "root_cause": "25/25",
+    "fused": {
+      "LSTM": {
+        "macro_f1": 0.8822330406094275,
+        "false_alarm": 0.012546804177888721,
+        "alert_recall": 0.7515337423312883,
+        "warn_lead": 52.77777777777778,
+        "warn_n": 18,
+        "warn_missed": 1,
+        "alert_lead": -5.0,
+        "alert_n": 5,
+        "alert_missed": 0
+      },
+      "XGBoost": {
+        "macro_f1": 0.9089796363750637,
+        "false_alarm": 0.006897457794127307,
+        "alert_recall": 0.7914110429447853,
+        "warn_lead": 75.83333333333333,
+        "warn_n": 18,
+        "warn_missed": 1,
+        "alert_lead": 36.0,
+        "alert_n": 5,
+        "alert_missed": 0
+      }
+    },
+    "n_events": 25
+  },
+  "Seed 7, pH probe +0.3 drift": {
+    "r2": 0.9130737673913365,
+    "rmse": 4.25294205644276,
+    "rmse_raw": 5.2006049727312345,
+    "rmse_hi": 5.289821686578319,
+    "bias_hi": 1.8362920671392302,
+    "fc_persist": 6.572405491266063,
+    "fc_lstm": 5.786890853835974,
+    "fc_xgb": 4.9926610574513575,
+    "anomaly_f1": 0.7100887812752219,
+    "events_caught": "25/25",
+    "root_cause": "25/25",
+    "fused": {
+      "LSTM": {
+        "macro_f1": 0.8372686472701325,
+        "false_alarm": 0.027983971621887933,
+        "alert_recall": 0.6319018404907976,
+        "warn_lead": 71.84210526315789,
+        "warn_n": 19,
+        "warn_missed": 0,
+        "alert_lead": -21.25,
+        "alert_n": 4,
+        "alert_missed": 1
+      },
+      "XGBoost": {
+        "macro_f1": 0.8175124944396762,
+        "false_alarm": 0.027524141102279447,
+        "alert_recall": 0.5736196319018405,
+        "warn_lead": 86.84210526315789,
+        "warn_n": 19,
+        "warn_missed": 0,
+        "alert_lead": 17.5,
+        "alert_n": 4,
+        "alert_missed": 1
+      }
+    },
+    "n_events": 25
+  },
+  "New data, seed 123": {
+    "r2": 0.994924056374085,
+    "rmse": 1.1228172873164046,
+    "rmse_raw": 2.229770799239039,
+    "rmse_hi": 1.5198197773675712,
+    "bias_hi": -0.05996553653041028,
+    "fc_persist": 4.949680964057602,
+    "fc_lstm": 3.44711247718294,
+    "fc_xgb": 2.416533334217445,
+    "anomaly_f1": 0.7432344462010602,
+    "events_caught": "21/21",
+    "root_cause": "20/21",
+    "fused": {
+      "LSTM": {
+        "macro_f1": 0.9058608644689716,
+        "false_alarm": 0.008341056533827619,
+        "alert_recall": 0.8112033195020747,
+        "warn_lead": 57.10526315789474,
+        "warn_n": 19,
+        "warn_missed": 0,
+        "alert_lead": 27.0,
+        "alert_n": 5,
+        "alert_missed": 0
+      },
+      "XGBoost": {
+        "macro_f1": 0.9249872283796242,
+        "false_alarm": 0.004170528266913809,
+        "alert_recall": 0.8257261410788381,
+        "warn_lead": 61.31578947368421,
+        "warn_n": 19,
+        "warn_missed": 0,
+        "alert_lead": 34.0,
+        "alert_n": 5,
+        "alert_missed": 0
+      }
+    },
+    "n_events": 21
+  },
+  "New data, seed 2027": {
+    "r2": 0.9943557732457138,
+    "rmse": 1.0281239889077565,
+    "rmse_raw": 2.297611212016875,
+    "rmse_hi": 1.5901964587676733,
+    "bias_hi": -0.07879420603788966,
+    "fc_persist": 4.408238593585626,
+    "fc_lstm": 3.3319747849061803,
+    "fc_xgb": 2.1735976985083787,
+    "anomaly_f1": 0.6524250974069595,
+    "events_caught": "13/13",
+    "root_cause": "13/13",
+    "fused": {
+      "LSTM": {
+        "macro_f1": 0.9317102191808068,
+        "false_alarm": 0.002286149742808154,
+        "alert_recall": 0.8427947598253275,
+        "warn_lead": 53.0,
+        "warn_n": 10,
+        "warn_missed": 0,
+        "alert_lead": 16.666666666666668,
+        "alert_n": 3,
+        "alert_missed": 0
+      },
+      "XGBoost": {
+        "macro_f1": 0.9630394958398649,
+        "false_alarm": 0.0019051247856734616,
+        "alert_recall": 0.9519650655021834,
+        "warn_lead": 54.5,
+        "warn_n": 10,
+        "warn_missed": 0,
+        "alert_lead": 55.0,
+        "alert_n": 3,
+        "alert_missed": 0
+      }
+    },
+    "n_events": 13
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "trained_with": "compact demo settings",
+  "test_days": 60,
+  "estimation": {
+    "Index formula on raw readings": {
+      "r2": 0.9896856999292636,
+      "rmse": 1.52353992369251
+    },
+    "Hybrid stacked ensemble": {
+      "r2": 0.9957962144674333,
+      "rmse": 0.972644720495379,
+      "mae": 0.6697013342372674,
+      "rmse_contaminated": 1.6947783074207534,
+      "bias_contaminated": -0.14174589224894205
+    }
+  },
+  "forecast_60min_rmse": {
+    "Persistence (no change)": 4.97722119350416,
+    "LSTM": 3.5435844553705165,
+    "XGBoost (lag features)": 2.6407626089364724
+  },
+  "anomaly": {
+    "threshold_tau": 0.36501190621738133,
+    "f1": 0.7218692796382039,
+    "events_detected": "20/20"
+  },
+  "early_warning": {
+    "macro_f1": 0.9004814799099005,
+    "false_alarm_rate": 0.006952938904268332
+  },
+  "root_cause_top1": "34/34",
+  "meta_weights": {
+    "XGBoost": 0.4828807350880067,
+    "CatBoost": 0.14495685194068525,
+    "Random Forest": -0.1094375552397851,
+    "Gradient Boosting": 0.5693231935371454,
+    "Extra Trees": 0.07131796174385267,
+    "AdaBoost": -0.12938445014037803
+  },
+  "training_minutes": 12.5
+}

@@ -1,0 +1,22 @@
+# Exact versions the saved models in models/ were trained with.
+# Other versions of scikit-learn / xgboost / catboost may fail to load them (then run: python train_models.py).
+numpy==2.2.6
+pandas==3.0.5
+scikit-learn==1.9.1
+xgboost==3.4.1
+catboost==1.2.10
+shap==0.52.0
+joblib==1.6.0
+torch==2.14.0
+# live system: MQTT, database, REST API, notifications
+paho-mqtt==2.1.0
+amqtt==0.12.1
+sqlalchemy==2.0.52
+pymysql==1.2.3
+influxdb-client==1.50.0
+fastapi==0.141.1
+uvicorn==0.53.0
+plyer==2.1.0
+# old Streamlit dashboard (app.py), no longer used by the launchers
+streamlit==1.64.0
+altair==6.3.0
